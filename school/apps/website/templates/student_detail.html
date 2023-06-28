@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Student Detail</h1>
+  <p>Full Name: {{ student.full_name }}</p>
+  <p>Email: {{ student.email }}</p>
+  <p>Birth Date: {{ student.birth_date }}</p>
+  <p>Class Name: {{ student.class_name }}</p>
+  <p>Address: {{ student.address }}</p>
+  <p>Gender: {{ student.get_gender_display }}</p>
+  {% if student.photo %}
+  <p>Photo: <img src="{{ student.photo.url }}" alt="{{ student.full_name }}" width="200"></p>
+{% else %}
+  <p>No photo available</p>
+{% endif %}
+
+  <form method="POST" action="{% url 'student_detail' student.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
+  </form>
+
+  <button onclick="confirmDelete()">Delete</button>
+
+  <script>
+    function confirmDelete() {
+      if (confirm('Вы уверены, что хотите удалить этого студента?')) {
+        document.getElementById('delete-form').submit();
+      }
+    }
+  </script>
+
+  <form id="delete-form" method="POST" action="{% url 'student_delete' student.pk %}">
+    {% csrf_token %}
+    <input type="hidden" name="_method" value="DELETE">
+  </form>
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Website</title>
+  <style>
+    /* Добавьте здесь свои стили CSS */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    main {
+      margin: 20px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>School project</h1>
+    <nav>
+      <ul>
+        <li><a href="/students">Students</a></li>
+        <li><a href="{% url 'create_student' %}" class="add-student-button">Add Student</a></li>
+        <li><a href="{% url 'send_email' %}">Send Email</a></li>
+        <li><form method="post" action="{% url 'search_students' %}">
+          {% csrf_token %}
+          <input type="text" name="search_query" placeholder="Search...">
+          <button type="submit">Search</button>
+      </form></li>
+       
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <footer>
+    <p>Тестовое задание 2023</p>
+  </footer>
+
+</body>
+</html>
