@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="header">
+        <h1>Create Form</h1>
+    </div>
+
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_full_name">Full Name:</label>
+            {{ form.full_name }}
+
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+            {% if form.errors.email %}
+                <p class="error">{{ form.errors.email }}</p>
+            {% endif %}
+
+            <label for="id_birth_date">Birth Date:</label>
+            {{ form.birth_date }}
+
+            <label for="id_class_name">Class Name:</label>
+            {{ form.class_name }}
+
+            <label for="id_address">Address:</label>
+            {{ form.address }}
+
+            <label for="id_gender">Gender:</label>
+            {{ form.gender }}
+
+            <label for="id_photo">Photo:</label>
+            {{ form.photo }}
+
+            
+
+            <button type="submit">Create</button>
+        </form>
+    </div>
+    {% endblock %}
+

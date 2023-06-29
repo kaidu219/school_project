@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   
+    <div class="header">
+        <h1>Список учеников</h1>
+    </div>
+
+    <table class="students-table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Email</th>
+                <th>Дата рождения</th>
+                <th>Класс</th>
+                <th>Адрес</th>
+                <th>Пол</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr onclick="window.location.href='{% url 'student_detail' student.pk %}';">
+                <td>{{ student.full_name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.birth_date }}</td>
+                <td>{{ student.class_name }}</td>
+                <td>{{ student.address }}</td>
+                <td>{{ student.gender }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% endblock %}
